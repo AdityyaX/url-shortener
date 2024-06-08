@@ -11,7 +11,7 @@ router.post('/create', async (req, res) => {
     shortId: shortID,
     redirectUrl: req.body.redirectUrl
   });
-  res.json({ shortId: shortID });
+  res.render('home', { shortID });
 });
 
 router.get('/:shortId', async (req, res) => {
@@ -20,7 +20,7 @@ router.get('/:shortId', async (req, res) => {
   if (url) {
     url.visitHiostry.push({ timestamp: new Date() });
     await url.save();
-    console.log(url.redirectUrl);
+    console.log(url.r);
     res.redirect(url.redirectUrl);
   } else {
     res.status(404).json({ error: 'URL not found' });
